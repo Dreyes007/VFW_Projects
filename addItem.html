@@ -34,8 +34,40 @@
 				</ul>
 				<aside>Order Type</aside>
 				<ul>					
-					<li><label for="carryout">Carry-Out:  </label><input type="radio" checked value="carryout" id="carryOut" name="order" /></li>
+					<li><label for="carryOut">Carry-Out:  </label><input type="radio" checked value="carryout" id="carryOut" name="order" /></li>
 					<li><label for="delivery">Delivery:  </label><input type="radio" value="Delivery" id="delivery" name="order" /></li>					
+				</ul>			
+    	<aside>Payment</aside>
+				<ul>
+					<li><label for="visa">Visa: </label><input type="checkbox" value="Visa" id="visa" name="payment" /></li>
+					<li><label for="masterCard">Master Card: </label><input type="checkbox" value="Mastercard" id="masterCard" name="payment" /></li>
+					<li><label for="cash">Cash:  </label><input type="checkbox" checked="" value="Cash" id="cash" name="payment" /></li>
 				</ul>
-			
-    
+	    	</fieldset>	    	
+	    	<fieldset>
+		    	<legend>Order Information</legend>
+		    	<ul>
+		    		<li>		    	
+		    			<label for="orderMenu">Order Menu</label>
+		    			<select id="orderMenu">
+		    				<optgroup label="Menu">
+		    					<option value="Appetizers">Appetizers</option>
+		    					<option value="Entrees">Entrees</option>
+		    					<option value="Desserts">Desserts</option>
+		    				</optgroup>
+		    				<optgroup label="Drinks">
+			    				<option value="Alcoholic">Alcoholic</option>
+			    				<option value="NonAlcoholic">Non-Alcoholic</option>
+			    			</optgroup>
+			    		</select>		    					    	
+			    	</li>			    	
+			    				    	
+			    		<li><label for="date">Delivery date</label>	<input type="date"  min="2011-01-31" max="2013-01-31"  id="date" name="date" required 							aria-required="true" /></li>
+			    		<li><label for="time">How would you rate your experience</label> <input type="range" min="1" max="5" id="time" name="name" /></li>		    						    		
+			       	<li><label for="comments">Additional Instructions: </label> <textarea id="comments">Type answer here</textarea></li>
+			       	<li><input type="hidden" value="true" /></li>				       			       
+		    	 </ul>
+	    	</fieldset>
+	    	<input type="submit" value="Submit Order" /> <input type="reset" value="Clear Order" />
+	    </form>
+    </body>

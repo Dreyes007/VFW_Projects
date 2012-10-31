@@ -12,18 +12,18 @@ h1{
 	margin: 10px 20px;
 	border: solid #000000;
 	padding: 10px;
-	background-color: #E1DFD3;
+	background-color: #ffb742;
 	width: 30%;
 	font-style: oblique;
 	font-family: sans-serif;
-	color: maroon;
+	color: #bf1725;
 }
 
 h2{
 	margin: 10px 20px;
 	font-style: oblique;
 	font-family: sans-serif;
-	color: #4D4B39;
+	color: #FF441A;
 }
 
 nav{
@@ -36,7 +36,7 @@ legend{
 	font-style: oblique;
 	font-size: large;
 	font-family: sans-serif;
-	color: maroon;			
+	color: #bf1725;			
 }
 
 label{
@@ -45,17 +45,17 @@ label{
 li{
 	font-style: oblique;
 	font-family: sans-serif;
-	color: #E1DFD3;
+	color: #bf1725;
 	line-height: 23px;
 }
 aside{
 	font-style: oblique;
 	font-family: sans-serif;
-	color: maroon;
+	color: #bf1725;
 }
 
 fieldset{
 	margin: 10px 20px;
 	border: solid #000;
-	background-color: #E1DFD3;
+	background-color: #ffb742;
 }

@@ -45,6 +45,25 @@ window.addEventListener("DOMContentLoaded", function(){
 		}
 	}
 	
+	function toggleControls(n){
+		switch(n){
+			case "on":
+				$('informationForm').style.display = "none";
+				$('clear').style.display = "inline";								
+				$('addNew').style.display = "inline";			
+			    break;
+			case "off":
+				$('informationForm').style.display = "block";
+				$('clear').style.display = "inline";								
+				$('addNew').style.display = "none";
+				$('items').style.display = "none";			
+			    break;
+			default:
+				return false;
+			
+		}
+	}
+	
 	function storeData(){		
 		var id 				= Math.floor(Math.random()*100000001);
 		//Gather up all our form field values and store in an object.
@@ -66,6 +85,45 @@ window.addEventListener("DOMContentLoaded", function(){
 		localStorage.setItem(id, JSON.stringify(item));
 		alert("Order Saved!");
 	}
+	function getData(){
+		toggleControls("on");
+		if(localStorage.length == 0){
+			alert("There is no data in Local Storage so default data was added.");
+		}
+		var makeDiv = document.createElement('div');
+		makeDiv.setAttribute("id", "items");
+		var makeList = document.createElement('ul');
+		makeDiv.appendChild(makeList);
+		document.body.appendChild(makeDiv);
+		for(var i=0, len=localStorage.length; i<len;i++){
+			var makeLi = document.createElement('li');
+			makeList.appendChild(makeLi);
+			var key = localStorage.key(i);
+			var value = localStorage.getItem(key);
+			var obj = JSON.parse(value);
+			var makeSubList = document.createElement('ul');
+			makeLi.appendChild(makeSubList);
+			for(var n in obj){
+				var makeSubLi = document.createElement('li');
+				makeSubList.appendChild(makeSubLi);
+				var optSubText = obj[n][0]+" "+obj[n][1];
+				makeSubLi.innerHTML = optSubText;			
+			}
+		}
+	}
+	
+	function clearLocal(){
+		if(localStorage.length === 0){
+			alert("There is no data to clear.")
+			
+		}else{
+			localStorage.clear();
+			alert("All information has been deleted!");
+			window.location.reload();
+			return false;
+		}
+	
+	}
 			
 	//Variable default
 	var menuGroups = ["--Choose A Menu--", "Appetizer", "Entree", "Dessert"],
@@ -77,11 +135,11 @@ window.addEventListener("DOMContentLoaded", function(){
 	
 	
 	//Set link & Submit Click Events
-/*
+	
 	var displayLink = $('displayLink');
 	displayLink.addEventListener("click", getData);
 	var clearLink = $('clear');
-	clearLink.addEventListener("click", clearLocal);*/
+	clearLink.addEventListener("click", clearLocal);
 	var save = $('submit');
 	save.addEventListener("click", storeData);
 

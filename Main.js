@@ -26,11 +26,31 @@ window.addEventListener("DOMContentLoaded", function(){
 		}
 		selectLi.appendChild(makeSelect);		
 	}
+	//Find value of selected radion button
+	function getSelectedRadio(){
+		var radios = document.forms[0].order;
+		for(var i=0; i<radios.length; i++){
+			if(radios[i].checked){
+				orderValue = radios[i].value;
+			}						
+		}
+	}
+	//Find value of selected checkbox button
+	function getSelectedCheckbox(){
+		var checkbox = document.forms[0].payment;
+		for(var i=0; i<checkbox.length; i++){
+			if(checkbox[i].checked){
+				paymentValue = checkbox[i].value;
+			}						
+		}
+	}
 	
-	function storeData(key){		
+	function storeData(){		
 		var id 				= Math.floor(Math.random()*100000001);
 		//Gather up all our form field values and store in an object.
 		//Object properties contain array with the form label and input value.
+		getSelectedRadio()
+		getSelectedCheckbox()
 		var item			= {};
 			item.fname		= ["First Name:", $('fname').value];
 			item.lname		= ["Last Name:", $('lname').value];	
@@ -48,7 +68,10 @@ window.addEventListener("DOMContentLoaded", function(){
 	}
 			
 	//Variable default
-	var menuGroups = ["--Choose A Menu--", "Appetizer", "Entree", "Dessert"];
+	var menuGroups = ["--Choose A Menu--", "Appetizer", "Entree", "Dessert"],
+		orderValue,
+		paymentValue;
+		
 	chooseMenu();
 	
 	
@@ -61,8 +84,5 @@ window.addEventListener("DOMContentLoaded", function(){
 	clearLink.addEventListener("click", clearLocal);*/
 	var save = $('submit');
 	save.addEventListener("click", storeData);
-
-
-
 
 });

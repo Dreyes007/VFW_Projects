@@ -88,7 +88,7 @@ window.addEventListener("DOMContentLoaded", function(){
 	function getData(){
 		toggleControls("on");
 		if(localStorage.length == 0){
-			alert("There is no data in Local Storage so default data was added.");
+			alert("There is no data in Local Storage.");
 		}
 		var makeDiv = document.createElement('div');
 		makeDiv.setAttribute("id", "items");

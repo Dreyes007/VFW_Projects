@@ -1,7 +1,7 @@
 // Daniel Reyes
 // VFW-1112
-// Project 2
-// Nov 1st
+// Project 3
+// Nov 8th
 
 //Wait untill DOM is ready.
 window.addEventListener("DOMContentLoaded", function(){
@@ -78,7 +78,7 @@ window.addEventListener("DOMContentLoaded", function(){
 			item.address	= ["Address:", $('address').value];
 			item.order		= ["Order:", orderValue];
 			item.payment	= ["Payment", paymentValue];
-			item.select 	= ["Menus:", $('select').value];
+			item.select 	= ["menus:", $('select').value];
 			item.amount 	= ["Order Amount:", $('amount').value];
 			item.date		= ["Delivery Date:", $('date').value];
 			item.comments	= ["Additional Instructions:", $('comments').value];
@@ -97,6 +97,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		document.body.appendChild(makeDiv);
 		for(var i=0, len=localStorage.length; i<len;i++){
 			var makeLi = document.createElement('li');
+			var linksLi = document.createElement('li');
 			makeList.appendChild(makeLi);
 			var key = localStorage.key(i);
 			var value = localStorage.getItem(key);
@@ -107,9 +108,37 @@ window.addEventListener("DOMContentLoaded", function(){
 				var makeSubLi = document.createElement('li');
 				makeSubList.appendChild(makeSubLi);
 				var optSubText = obj[n][0]+" "+obj[n][1];
-				makeSubLi.innerHTML = optSubText;			
+				makeSubLi.innerHTML = optSubText;
+				makeSubList.appendChild(linksLi);			
 			}
 		}
+		makeItemLinks(localStorage.key(i), linksLi);//Create edit and delete button/link for each item in the local storage
+	}
+	
+	//Make Items Links
+	//Create Edite and Deleted links for each stored Item when displayed.
+	function makeItemLinks(key, linksLi){
+		//Add edit single item link
+		var editLink = document.createElement('a');
+		editLink.href = "#";
+		editLink.key = key;
+		var editText = "Edit Order";
+		//editLink.addEventListener("click", editItem);
+		editLink.innerHTML = editText;
+		linksLi.appendChild(editLink);
+		
+		//Add line break.
+		var breakTag = document.createElement('br');
+		linksLi.appendChild(breakTag);
+		
+		//Add Delete single item link.
+		var deleteLink = document.createElement('a')
+			deleteLink.href = "#";
+			deleteLink.key = key;
+			var deleteText = "Delete Order";
+			//deleteLink.addEventListener("click", deleteItem);
+			deleteLink.innerHTML = deleteText;
+			linksLi.appendChild(deleteLink);
 	}
 	
 	function clearLocal(){

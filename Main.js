@@ -48,21 +48,22 @@ window.addEventListener("DOMContentLoaded", function(){
 	function toggleControls(n){
 		switch(n){
 			case "on":
-				$('informationForm').style.display = "none";
-				$('clear').style.display = "inline";								
-				$('addNew').style.display = "inline";			
-			    break;
+			$('informationForm').style.display = "none";
+			$('clear').style.display = "inline";	
+			$('addNew').style.display = "inline";	
+			break;
 			case "off":
-				$('informationForm').style.display = "block";
-				$('clear').style.display = "inline";								
-				$('addNew').style.display = "none";
-				$('items').style.display = "none";			
-			    break;
+			$('informationForm').style.display = "block";
+			$('clear').style.display = "inline";	
+			$('addNew').style.display = "none";
+			$('items').style.display = "none";	
+			break;
 			default:
-				return false;
-			
+			return false;
+
 		}
 	}
+	
 	
 	function storeData(){		
 		var id 				= Math.floor(Math.random()*100000001);
@@ -142,40 +143,40 @@ window.addEventListener("DOMContentLoaded", function(){
 			
 	}
 	
-		function editItem(){
-			//Grab the data from our item on local storage
-			var value = localStorage.getItem(this.key);
-			var item = JSON.parse(value);
+	function editItem(){
+		//Grab the data from our item on local storage
+		var value = localStorage.getItem(this.key);
+		var item = JSON.parse(value);
 			
-			//Show the form
-			toggleControls("off");
+		//Show the form
+		toggleControls("off");
 			
-			//Populate form with with current local storage values.
-			$('fname').value = item.fname[1];
-			$('lname').value = item.lname[1];
-			$('email').value = item.email[1];
-			$('phone').value = item.phone[1];
-			$('address').value = item.address[1];
-			var radios = document.forms[0].order;
-			for(var i=0; i<radios.length; i++){
-				if(radios[i].value == "Carryout" && item.order[1] == "Carryout"){
-					radios[i].setAttribute("checked", "checked");
-				}else if(radios[i].value == "Delivery" && item.order[1] == "Delivery"){
-					radios[i].setAttribute("checked", "checked");
-				}
+		//Populate form with with current local storage values.
+		$('fname').value = item.fname[1];
+		$('lname').value = item.lname[1];
+		$('email').value = item.email[1];
+		$('phone').value = item.phone[1];
+		$('address').value = item.address[1];
+		var radios = document.forms[0].order;
+		for(var i=0; i<radios.length; i++){
+			if(radios[i].value == "Carryout" && item.order[1] == "Carryout"){
+				radios[i].setAttribute("checked", "checked");
+			}else if(radios[i].value == "Delivery" && item.order[1] == "Delivery"){
+				radios[i].setAttribute("checked", "checked");
 			}
-			for(var i=0; i<checkBox.length; i++){
-				if(radios[i].value == "Visa" && item.payment[1] == "Visa"){
-					radios[i].setAttribute("checked", "checked");
-				}else if(Checkbox[i].value == "Mastercard" && item.payment[1] == "Mastercard"){
-					Checkbox[i].setAttribute("checked", "checked");
-				}
+		}
+		for(var i=0; i<checkBox.length; i++){
+			if(radios[i].value == "Visa" && item.payment[1] == "Visa"){
+				radios[i].setAttribute("checked", "checked");
+			}else if(Checkbox[i].value == "Mastercard" && item.payment[1] == "Mastercard"){
+				Checkbox[i].setAttribute("checked", "checked");
 			}
-			$('select').value = item.select[1];
-			$('amount').value = item.select[1];
-			$('date').value = item.select[1];
-			$('time').value = item.select[1];
-			$('comments').value = item.select[1];
+		}
+		$('select').value = item.select[1];
+		$('amount').value = item.select[1];
+		$('date').value = item.select[1];
+		$('time').value = item.select[1];
+		$('comments').value = item.select[1];
 			
 		//Remove the initial listener from the input 'Save Order' button.
 		save.removeEventListener("click", storeData);
@@ -202,10 +203,61 @@ window.addEventListener("DOMContentLoaded", function(){
 	
 	}
 	
-	function validate(){
+	function validate(e){
+		//Define the elements we want to check
+		var getfname = $('fname');
+		var getlname = $('lname');
+		var getEmail = $('email');
+		var getPhone = $('Phone');
 		
-	}
+		//Reset Error Message.
+		errMsg.innerHTML = "";
+		getfname.style.border = "1px solid black";
+		getlname.style.border = "1px solid black";
+		getEmail.style.border = "1px solid black";
+		
+		//Get error message
+		var messageAry = [];
+		
+		//First Name Validation
+		if(getfname.value === ""){
+			var fnameError = "Please enter a first name"
+			getfname.style.border = "1px solid red";
+			messageAry.push(fnameError);
+		}
+		//Last Name Validation
+		if(getlname.value === ""){
+			var lnameError = "Please enter a last name"
+			getlname.style.border = "1px solid red";
+			messageAry.push(lnameError);			
+		}
+		//Email Validation
+		var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+		if(!(re.exec(getEmail.value))){
+			var emailError = "Please enter a valid email address";
+			getEmail.style.border = "1px solid red";
+			messageAry.push(emailError);
+		}
+		
+		//If there were errors display them on the screen.
+		if(messageAry.length >= 1){
+			for(var i=0, j=messageAry.length; i < j; i++){
+				var txt = document.createElement('li');
+				txt.innerHTML = messageAry[i];
+				errMsg.appendChild(txt);
+			}
+			e.preventDefault
+			return false;
+		}else{
+			//If all is Ok, save our Data! Send the key value (Wich came from the editData function).
+			//Remember this key value was passed as through the editSubmit event listener as a property.
+			storeData(this.key);
 			
+		}	
+			
+	}
+		
+				
 	//Variable default
 	var menuGroups = ["--Choose A Menu--", "Appetizer", "Entree", "Dessert"],
 		orderValue,
@@ -222,6 +274,6 @@ window.addEventListener("DOMContentLoaded", function(){
 	var clearLink = $('clear');
 	clearLink.addEventListener("click", clearLocal);
 	var save = $('submit');
-	save.addEventListener("click", storeData);
+	save.addEventListener("click", validate);
 
 });

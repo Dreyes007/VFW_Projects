@@ -112,7 +112,7 @@ window.addEventListener("DOMContentLoaded", function(){
 				makeSubList.appendChild(linksLi);			
 			}
 		}
-		makeItemLinks(localStorage.key(i), linksLi);//Create edit and delete button/link for each item in the local storage
+		makeItemLinks(localStorage.key(i),linksLi);//Create edit and delete button/link for each item in the local storage
 	}
 	
 	//Make Items Links
@@ -123,7 +123,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		editLink.href = "#";
 		editLink.key = key;
 		var editText = "Edit Order";
-		//editLink.addEventListener("click", editItem);
+		editLink.addEventListener("click", editItem);
 		editLink.innerHTML = editText;
 		linksLi.appendChild(editLink);
 		
@@ -139,6 +139,7 @@ window.addEventListener("DOMContentLoaded", function(){
 			//deleteLink.addEventListener("click", deleteItem);
 			deleteLink.innerHTML = deleteText;
 			linksLi.appendChild(deleteLink);
+			
 	}
 	
 		function editItem(){
@@ -168,8 +169,6 @@ window.addEventListener("DOMContentLoaded", function(){
 					radios[i].setAttribute("checked", "checked");
 				}else if(Checkbox[i].value == "Mastercard" && item.payment[1] == "Mastercard"){
 					Checkbox[i].setAttribute("checked", "checked");
-				}else if(Checkbox[i].value == "Cash" && item.payment[1] == "Cash"){
-					Checkbox[i].setAttribute("checked", "checked");
 				}
 			}
 			$('select').value = item.select[1];
@@ -177,6 +176,16 @@ window.addEventListener("DOMContentLoaded", function(){
 			$('date').value = item.select[1];
 			$('time').value = item.select[1];
 			$('comments').value = item.select[1];
+			
+		//Remove the initial listener from the input 'Save Order' button.
+		save.removeEventListener("click", storeData);
+		//Change Submit Button value to Edit Button
+		$('submit').value = "Edit Information";
+		var editSubmit = $('submit');
+		//Save the key value establish in this function as a property of the edit submit event
+		//so we can use that value when the edited data is saved.
+		editSubmit.addEventListener("click", validate);
+		editSubmit.key = this.key;
 			
 		}
 	
@@ -192,12 +201,16 @@ window.addEventListener("DOMContentLoaded", function(){
 		}
 	
 	}
+	
+	function validate(){
+		
+	}
 			
 	//Variable default
 	var menuGroups = ["--Choose A Menu--", "Appetizer", "Entree", "Dessert"],
 		orderValue,
 		paymentValue;
-		
+			
 	chooseMenu();
 	
 	

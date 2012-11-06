@@ -78,7 +78,7 @@ window.addEventListener("DOMContentLoaded", function(){
 			item.address	= ["Address:", $('address').value];
 			item.order		= ["Order:", orderValue];
 			item.payment	= ["Payment", paymentValue];
-			item.select 	= ["menus:", $('select').value];
+			item.select 	= ["Menus:", $('select').value];
 			item.amount 	= ["Order Amount:", $('amount').value];
 			item.date		= ["Delivery Date:", $('date').value];
 			item.comments	= ["Additional Instructions:", $('comments').value];
@@ -140,6 +140,45 @@ window.addEventListener("DOMContentLoaded", function(){
 			deleteLink.innerHTML = deleteText;
 			linksLi.appendChild(deleteLink);
 	}
+	
+		function editItem(){
+			//Grab the data from our item on local storage
+			var value = localStorage.getItem(this.key);
+			var item = JSON.parse(value);
+			
+			//Show the form
+			toggleControls("off");
+			
+			//Populate form with with current local storage values.
+			$('fname').value = item.fname[1];
+			$('lname').value = item.lname[1];
+			$('email').value = item.email[1];
+			$('phone').value = item.phone[1];
+			$('address').value = item.address[1];
+			var radios = document.forms[0].order;
+			for(var i=0; i<radios.length; i++){
+				if(radios[i].value == "Carryout" && item.order[1] == "Carryout"){
+					radios[i].setAttribute("checked", "checked");
+				}else if(radios[i].value == "Delivery" && item.order[1] == "Delivery"){
+					radios[i].setAttribute("checked", "checked");
+				}
+			}
+			for(var i=0; i<checkBox.length; i++){
+				if(radios[i].value == "Visa" && item.payment[1] == "Visa"){
+					radios[i].setAttribute("checked", "checked");
+				}else if(Checkbox[i].value == "Mastercard" && item.payment[1] == "Mastercard"){
+					Checkbox[i].setAttribute("checked", "checked");
+				}else if(Checkbox[i].value == "Cash" && item.payment[1] == "Cash"){
+					Checkbox[i].setAttribute("checked", "checked");
+				}
+			}
+			$('select').value = item.select[1];
+			$('amount').value = item.select[1];
+			$('date').value = item.select[1];
+			$('time').value = item.select[1];
+			$('comments').value = item.select[1];
+			
+		}
 	
 	function clearLocal(){
 		if(localStorage.length === 0){

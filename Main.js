@@ -65,10 +65,16 @@ window.addEventListener("DOMContentLoaded", function(){
 	}
 	
 	
-	function storeData(){		
-		var id 				= Math.floor(Math.random()*100000001);
-		//Gather up all our form field values and store in an object.
-		//Object properties contain array with the form label and input value.
+	function storeData(key){
+		//If there is not key, this means this is a  brand new Item and need a new key
+		if(!key){		
+			var id 				= Math.floor(Math.random()*100000001);
+		}else{
+			//Set the id to the existing key we're editing so that it will save over the data.
+			//The key is the same key that's been passed along from the editSubmit event handler
+			//to the validate function, and then passed here into the storeData function.
+			id = key;
+		}
 		getSelectedRadio()
 		getSelectedCheckbox()
 		var item			= {};
@@ -137,7 +143,7 @@ window.addEventListener("DOMContentLoaded", function(){
 			deleteLink.href = "#";
 			deleteLink.key = key;
 			var deleteText = "Delete Order";
-			//deleteLink.addEventListener("click", deleteItem);
+			deleteLink.addEventListener("click", deleteItem);
 			deleteLink.innerHTML = deleteText;
 			linksLi.appendChild(deleteLink);
 			
@@ -188,7 +194,18 @@ window.addEventListener("DOMContentLoaded", function(){
 		editSubmit.addEventListener("click", validate);
 		editSubmit.key = this.key;
 			
+	}
+	
+	function deleteItem(){
+		var ask = confirm("Are you sure you want to delete this information?");
+		if(ask){
+			localStorage.removeItem(this.key);
+			alert("Information was deleted");
+			window.location.reload();
+		}else{
+			alert("Information was NOT deleted");
 		}
+	}
 	
 	function clearLocal(){
 		if(localStorage.length === 0){
@@ -261,7 +278,8 @@ window.addEventListener("DOMContentLoaded", function(){
 	//Variable default
 	var menuGroups = ["--Choose A Menu--", "Appetizer", "Entree", "Dessert"],
 		orderValue,
-		paymentValue;
+		paymentValue,
+		errMsg = $('errors');
 			
 	chooseMenu();
 	

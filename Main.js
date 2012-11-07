@@ -75,8 +75,8 @@ window.addEventListener("DOMContentLoaded", function(){
 			//to the validate function, and then passed here into the storeData function.
 			id = key;
 		}
-		getSelectedRadio()
-		getSelectedCheckbox()
+		getSelectedRadio();
+		getSelectedCheckbox();
 		var item			= {};
 			item.fname		= ["First Name:", $('fname').value];
 			item.lname		= ["Last Name:", $('lname').value];	
@@ -139,7 +139,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		linksLi.appendChild(breakTag);
 		
 		//Add Delete single item link.
-		var deleteLink = document.createElement('a')
+		var deleteLink = document.createElement('a');
 			deleteLink.href = "#";
 			deleteLink.key = key;
 			var deleteText = "Delete Order";
@@ -209,7 +209,7 @@ window.addEventListener("DOMContentLoaded", function(){
 	
 	function clearLocal(){
 		if(localStorage.length === 0){
-			alert("There is no data to clear.")
+			alert("There is no data to clear.");
 			
 		}else{
 			localStorage.clear();
@@ -238,13 +238,13 @@ window.addEventListener("DOMContentLoaded", function(){
 		
 		//First Name Validation
 		if(getfname.value === ""){
-			var fnameError = "Please enter a first name"
+			var fnameError = "Please enter a first name";
 			getfname.style.border = "1px solid red";
 			messageAry.push(fnameError);
 		}
 		//Last Name Validation
 		if(getlname.value === ""){
-			var lnameError = "Please enter a last name"
+			var lnameError = "Please enter a last name";
 			getlname.style.border = "1px solid red";
 			messageAry.push(lnameError);			
 		}
@@ -263,7 +263,7 @@ window.addEventListener("DOMContentLoaded", function(){
 				txt.innerHTML = messageAry[i];
 				errMsg.appendChild(txt);
 			}
-			e.preventDefault
+			e.preventDefault;
 			return false;
 		}else{
 			//If all is Ok, save our Data! Send the key value (Wich came from the editData function).

@@ -171,11 +171,11 @@ window.addEventListener("DOMContentLoaded", function(){
 				radios[i].setAttribute("checked", "checked");
 			}
 		}
-		for(var i=0; i<checkBox.length; i++){
-			if(radios[i].value == "Visa" && item.payment[1] == "Visa"){
-				radios[i].setAttribute("checked", "checked");
-			}else if(Checkbox[i].value == "Mastercard" && item.payment[1] == "Mastercard"){
-				Checkbox[i].setAttribute("checked", "checked");
+		for(var i=0; i<checkbox.length; i++){
+			if(checkbox[i].value == "Visa" && item.payment[1] == "Visa"){
+				checkbox[i].setAttribute("checked", "checked");
+			}else if(checkbox[i].value == "Mastercard" && item.payment[1] == "Mastercard"){
+				checkbox[i].setAttribute("checked", "checked");
 			}
 		}
 		$('select').value = item.select[1];
@@ -237,13 +237,13 @@ window.addEventListener("DOMContentLoaded", function(){
 		var messageAry = [];
 		
 		//First Name Validation
-		if(getfname.value === ""){
+		if(getfname.value === "fname"){
 			var fnameError = "Please enter a first name";
 			getfname.style.border = "1px solid red";
 			messageAry.push(fnameError);
 		}
 		//Last Name Validation
-		if(getlname.value === ""){
+		if(getlname.value === "lname"){
 			var lnameError = "Please enter a last name";
 			getlname.style.border = "1px solid red";
 			messageAry.push(lnameError);			

@@ -1,11 +1,22 @@
 /* 
 Daniel Reyes
 VFW-1112
-Project 2
-Nov 1st
+Project 3
+Nov 8th
 */ 
 
 
+
+p{
+	margin: 10px 20px;
+	border: solid #000000;
+	padding: 10px;
+	background-color: #854A23;
+	font-style: oblique;
+	font-family: sans-serif;
+	color: #ffb742;
+	line-height: 23px;
+}
 
 
 h1{

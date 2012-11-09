@@ -222,7 +222,7 @@ window.addEventListener("DOMContentLoaded", function(){
 	
 	function validate(e){
 		//Define the elements we want to check
-		var getfname = $('fname');
+		var getFname = $('fname');
 		var getlname = $('lname');
 		var getEmail = $('email');
 		var getPhone = $('Phone');
@@ -232,6 +232,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		getfname.style.border = "1px solid black";
 		getlname.style.border = "1px solid black";
 		getEmail.style.border = "1px solid black";
+		getPhone.style.border = "1px solid black";
 		
 		//Get error message
 		var messageAry = [];
@@ -243,7 +244,7 @@ window.addEventListener("DOMContentLoaded", function(){
 			messageAry.push(fnameError);
 		}
 		//Last Name Validation
-		if(getlname.value === "lname"){
+		if(getlname.value === ""){
 			var lnameError = "Please enter a last name";
 			getlname.style.border = "1px solid red";
 			messageAry.push(lnameError);			
@@ -255,10 +256,16 @@ window.addEventListener("DOMContentLoaded", function(){
 			getEmail.style.border = "1px solid red";
 			messageAry.push(emailError);
 		}
+		//Phone number Validation
+		if(getPhonename.value === ""){
+			var phoneError = "Please enter a phone number";
+			getPhone.style.border = "1px solid red";
+			messageAry.push(phoneError);
+		}
 		
 		//If there were errors display them on the screen.
 		if(messageAry.length >= 1){
-			for(var i=0, j=messageAry.length; i < j; i++){
+			for(var i=0, j=messageAry.length; i<j; i++){
 				var txt = document.createElement('li');
 				txt.innerHTML = messageAry[i];
 				errMsg.appendChild(txt);
@@ -280,6 +287,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		orderValue,
 		paymentValue,
 		errMsg = $('errors');
+		
 			
 	chooseMenu();
 	
@@ -292,6 +300,6 @@ window.addEventListener("DOMContentLoaded", function(){
 	var clearLink = $('clear');
 	clearLink.addEventListener("click", clearLocal);
 	var save = $('submit');
-	save.addEventListener("click", validate);
+	save.addEventListener("click", storeData);
 
 });

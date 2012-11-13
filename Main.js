@@ -85,7 +85,7 @@ window.addEventListener("DOMContentLoaded", function(){
 			item.address	= ["Address:", $('address').value];
 			item.order		= ["Order:", orderValue];
 			item.payment	= ["Payment", paymentValue];
-			item.select 	= ["Menus:", $('select').value];
+			item.select 	= ["Menus:", $('menus').value];
 			item.amount 	= ["Order Amount:", $('amount').value];
 			item.date		= ["Delivery Date:", $('date').value];
 			item.comments	= ["Additional Instructions:", $('comments').value];
@@ -265,7 +265,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		
 		//If there were errors display them on the screen.
 		if(messageAry.length >= 1){
-			for(var i=0, j=messageAry.length; i<j; i++){
+			for(var i=0, j=messageAry.length; i < j; i++){
 				var txt = document.createElement('li');
 				txt.innerHTML = messageAry[i];
 				errMsg.appendChild(txt);
@@ -287,8 +287,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		orderValue,
 		paymentValue,
 		errMsg = $('errors');
-		
-			
+					
 	chooseMenu();
 	
 	
@@ -300,6 +299,6 @@ window.addEventListener("DOMContentLoaded", function(){
 	var clearLink = $('clear');
 	clearLink.addEventListener("click", clearLocal);
 	var save = $('submit');
-	save.addEventListener("click", storeData);
+	save.addEventListener("click", validate);
 
 });

@@ -95,7 +95,8 @@ window.addEventListener("DOMContentLoaded", function(){
 	function getData(){
 		toggleControls("on");
 		if(localStorage.length == 0){
-			alert("There is no data in Local Storage.");
+			alert("There is no data in Local Storage so default data was added.");
+			autoFillData();
 		}
 		var makeDiv = document.createElement('div');
 		makeDiv.setAttribute("id", "items");
@@ -118,8 +119,18 @@ window.addEventListener("DOMContentLoaded", function(){
 				makeSubLi.innerHTML = optSubText;
 				makeSubList.appendChild(linksLi);			
 			}
+			makeItemLinks(localStorage.key(i),linksLi);//Create edit and delete button/link for each item in the local storage
+		}		
+	}
+	
+	//Auto Populate Local Storage
+	function autoFillData(){
+		//The actual JSON OBJECT data required for this to work is coming from our json.js file which is loaded from our HTML page.
+		//Store JSON OBJECT into local storage.
+		for(var n in json){
+			var id = Math.floor(Math.random()*100000001);
+			localStorage.setItem(id, JSON.stringify(json[n]));
 		}
-		makeItemLinks(localStorage.key(i),linksLi);//Create edit and delete button/link for each item in the local storage
 	}
 	
 	//Make Items Links
@@ -222,10 +233,10 @@ window.addEventListener("DOMContentLoaded", function(){
 	
 	function validate(e){
 		//Define the elements we want to check
-		var getFname = $('fname');
+		var getfname = $('fname');
 		var getlname = $('lname');
 		var getEmail = $('email');
-		var getPhone = $('Phone');
+		var getPhone = $('phone');
 		
 		//Reset Error Message.
 		errMsg.innerHTML = "";
@@ -238,7 +249,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		var messageAry = [];
 		
 		//First Name Validation
-		if(getfname.value === "fname"){
+		if(getfname.value === ""){
 			var fnameError = "Please enter a first name";
 			getfname.style.border = "1px solid red";
 			messageAry.push(fnameError);
@@ -257,7 +268,7 @@ window.addEventListener("DOMContentLoaded", function(){
 			messageAry.push(emailError);
 		}
 		//Phone number Validation
-		if(getPhonename.value === ""){
+		if(getPhone.value === ""){
 			var phoneError = "Please enter a phone number";
 			getPhone.style.border = "1px solid red";
 			messageAry.push(phoneError);

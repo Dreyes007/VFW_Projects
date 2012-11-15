@@ -1,11 +1,14 @@
 /* 
 Daniel Reyes
 VFW-1112
-Project 3
-Nov 8th
+Project 4
+Nov 15th
 */ 
 
-
+html{
+	background-color: #59360e
+	
+}
 
 p{
 	margin: 10px 20px;
@@ -23,11 +26,11 @@ h1{
 	margin: 10px 20px;
 	border: solid #000000;
 	padding: 10px;
-	background-color: #ffb742;
+	background-color: #e46d0a;
 	width: 30%;
 	font-style: oblique;
 	font-family: sans-serif;
-	color: #bf1725;
+	color: #ffb742;
 }
 
 h2{
@@ -47,7 +50,7 @@ legend{
 	font-style: oblique;
 	font-size: large;
 	font-family: sans-serif;
-	color: #bf1725;			
+	color: #ffb742;			
 }
 
 label{
@@ -62,11 +65,30 @@ li{
 aside{
 	font-style: oblique;
 	font-family: sans-serif;
-	color: #bf1725;
+	color: #ffb742;
 }
 
 fieldset{
 	margin: 10px 20px;
 	border: solid #000;
-	background-color: #ffb742;
+	background-color: #e46d0a;
 }
+
+.questions{
+	margin: 20px;
+	padding: 30px;
+	border: solid #000;
+	background-color: #ffb742;	
+}
+a:link{color: blue;}
+a:Visited{color: gray;}
+a:hover{color: red;}
+a:active{color: black;}
+
+
+
+
+
+
+
+

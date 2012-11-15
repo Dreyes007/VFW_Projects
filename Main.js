@@ -1,7 +1,7 @@
 // Daniel Reyes
 // VFW-1112
-// Project 3
-// Nov 8th
+// Project 4
+// Nov 15th
 
 //Wait untill DOM is ready.
 window.addEventListener("DOMContentLoaded", function(){
